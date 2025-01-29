@@ -1,0 +1,9 @@
+
+™
+java:S3655"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¾Ëèüÿÿÿÿ8‘Î²¨2J$69044085-4f18-4616-8c58-710ebbd854a3
+˜
+java:S3655t"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(¾Ëèüÿÿÿÿ8Î²¨2J$92abfa1f-b412-4a0a-a466-4318b2f30b36
+
+java:S1128"GRemove this unused import 'com.dinethbakers.hrm.entity.OverTimeEntity'.(ö­Ò†øÿÿÿÿ8Ö´¨2J$d630891e-f87b-42e9-8e7c-1798c12742e2
+
+java:S1128"HRemove this unused import 'com.dinethbakers.hrm.model.OverTimeApproval'.(‰åù±ûÿÿÿÿ8Ö´¨2J$5f0b1ef3-89a5-466a-b82c-abd7bfd1c5a3

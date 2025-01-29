@@ -4,7 +4,10 @@ import com.dinethbakers.hrm.util.ShiftTypeEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,25 +15,33 @@ import java.util.List;
 @Data
 public class JobRoleEntity {
     @Id
-    @Column(name = "job_role_id")
-    private String jobRoleId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Column(unique = true)
     private String title;
+
+    @CreationTimestamp
+    @Column(updatable = false, name = "created_at")
+    private Date createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     @JsonIgnore
     @OneToMany(mappedBy = "jobRole", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<EmployeeEntity> employees;
 
     @ManyToOne
-    @JoinColumn(name = "leave_policy", referencedColumnName = "policy_id")
+    @JoinColumn(name = "leave_policy_id", referencedColumnName = "id")
     private LeavePolicyEntity leavePolicy;
 
     @ManyToOne
-    @JoinColumn(name = "salary_policy", referencedColumnName = "policy_id")
+    @JoinColumn(name = "salary_policy_id", referencedColumnName = "id")
     private SalaryPolicyEntity salaryPolicy;
 
-    private ShiftTypeEnum shiftTypeEnum;
+    private ShiftTypeEnum shiftType;
 
     @ManyToMany
     @JoinTable(name = "job_shifts",

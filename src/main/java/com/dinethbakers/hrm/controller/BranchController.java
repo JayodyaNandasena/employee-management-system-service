@@ -31,7 +31,7 @@ public class BranchController {
     }
 
     @GetMapping("/by-id")
-    Branch getById(@RequestParam(name = "branchId") String id){
+    Branch getById(@RequestParam(name = "branchId") Integer id){
         return service.getById(id);
     }
 
@@ -39,13 +39,14 @@ public class BranchController {
     Branch getByName(@RequestParam(name = "branchName") String name){
         return service.getByName(name);
     }
+
     @PutMapping
     Branch update(@RequestBody Branch branch){
         return service.update(branch);
     }
 
     @DeleteMapping
-    Map<String, Boolean> deleteById(@RequestParam(name = "branchId") String id){
+    Map<String, Boolean> deleteById(@RequestParam(name = "branchId") Integer id){
         return Collections.singletonMap("Delete status", service.delete(id));
     }
 

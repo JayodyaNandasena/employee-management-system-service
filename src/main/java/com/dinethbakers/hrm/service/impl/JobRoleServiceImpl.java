@@ -30,8 +30,6 @@ public class JobRoleServiceImpl implements JobRoleService {
 
         JobRoleEntity jobRoleEntity = mapper.convertValue(dto, JobRoleEntity.class);
 
-        jobRoleEntity.setJobRoleId(generateId());
-
         jobRoleEntity.setSalaryPolicy(
                 findOrCreateSalaryPolicy(dto.getSalaryPolicy()));
         jobRoleEntity.setLeavePolicy(
@@ -62,19 +60,6 @@ public class JobRoleServiceImpl implements JobRoleService {
     @Override
     public List<String> getAllTitles() {
         return jobRoleRepository.findAllTitles();
-    }
-
-    private String generateId(){
-        String maxId = jobRoleRepository.findMaxJobRoleId();
-
-        if (maxId == null){
-            return "R001";
-        }
-
-        String numberPart = maxId.replaceAll("\\D+", "");
-        int number = Integer.parseInt(numberPart);
-        number++;
-        return "R" + String.format("%03d", number);
     }
 
     private SalaryPolicyEntity findOrCreateSalaryPolicy(SalaryPolicy dto){

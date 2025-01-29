@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface MessageRepository extends CrudRepository<MessageEntity,Integer> {
-    List<MessageEntity> findByReceiverEmployeeIdOrderByMessageIdDesc(String employeeId);
+    List<MessageEntity> findByReceiverEmployeeIdOrderByIdDesc(String employeeId);
 }

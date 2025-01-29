@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface BranchService {
     Branch persist(Branch branch);
-    Branch getById(String id);
+    Branch getById(Integer id);
     Branch getByName(String name);
     List<Branch> getAll();
     Branch update(Branch branch);
-    Boolean delete(String id);
+    Boolean delete(Integer id);
     List<String> getAllNames();
 }

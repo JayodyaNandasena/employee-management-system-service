@@ -55,7 +55,7 @@ public class TimeOffServiceImpl implements TimeOffService {
         timeOffEntity.setRequestDateTime(dto.getRequestDateTime());
         timeOffEntity.setStartDateTime(dto.getStartDateTime());
         timeOffEntity.setEndDateTime(dto.getEndDateTime());
-        timeOffEntity.setStatusEnum(StatusEnum.PENDING);
+        timeOffEntity.setStatus(StatusEnum.PENDING);
 
         timeOffRepository.save(timeOffEntity);
 
@@ -91,7 +91,7 @@ public class TimeOffServiceImpl implements TimeOffService {
 
         timeOffEntity.setManager(managerById.get());
         timeOffEntity.setApprovedDateTime(dto.getApprovedDateTime());
-        timeOffEntity.setStatusEnum(dto.getStatusEnum());
+        timeOffEntity.setStatus(dto.getStatusEnum());
 
         timeOffRepository.save(timeOffEntity);
 
@@ -110,54 +110,54 @@ public class TimeOffServiceImpl implements TimeOffService {
 
     @Override
     public List<TimeOffRequestRead> getAllByStatus(String requesterId, StatusEnum statusEnum) {
-        String branchId = employeeRepository.findBranchByEmployeeId(requesterId).getBranchId();
-        String branchName = branchRepository.findById(branchId).get().getName();
+        //String branchId = employeeRepository.findBranchByEmployeeId(requesterId).getBranchId();
+        //String branchName = branchRepository.findById(branchId).get().getName();
 
         List<TimeOffRequestRead> requests = new ArrayList<>();
 
         for (TimeOffEntity byStatus : timeOffRepository.findByStatus(statusEnum)) {
 
-            if (Objects.equals(branchId,
-                    employeeRepository.findBranchByEmployeeId(
-                            byStatus.getEmployee().getEmployeeId()).getBranchId())){
-
-                TimeOffRequestRead requestRead = mapper.convertValue(byStatus, TimeOffRequestRead.class);
-
-                requestRead.getEmployee().setBranchName(branchName);
-
-                requestRead.getEmployee().setJobRoleTitle(
-                        byStatus.getEmployee().getJobRole().getTitle()
-                );
-
-                requests.add(requestRead);
-            }
+//            if (Objects.equals(branchId,
+//                    employeeRepository.findBranchByEmployeeId(
+//                            byStatus.getEmployee().getEmployeeId()).getBranchId())){
+//
+//                TimeOffRequestRead requestRead = mapper.convertValue(byStatus, TimeOffRequestRead.class);
+//
+//                requestRead.getEmployee().setBranchName(branchName);
+//
+//                requestRead.getEmployee().setJobRoleTitle(
+//                        byStatus.getEmployee().getJobRole().getTitle()
+//                );
+//
+//                requests.add(requestRead);
+//            }
         }
         return requests;
     }
 
     @Override
     public List<TimeOffRequestRead> getAll(String requesterId) {
-        String branchId = employeeRepository.findBranchByEmployeeId(requesterId).getBranchId();
-        String branchName = branchRepository.findById(branchId).get().getName();
+        //String branchId = employeeRepository.findBranchByEmployeeId(requesterId).getBranchId();
+        //String branchName = branchRepository.findById(branchId).get().getName();
 
         List<TimeOffRequestRead> requests = new ArrayList<>();
 
         for (TimeOffEntity byStatus : timeOffRepository.findAll()) {
 
-            if (Objects.equals(branchId,
-                    employeeRepository.findBranchByEmployeeId(
-                            byStatus.getEmployee().getEmployeeId()).getBranchId())){
-
-                TimeOffRequestRead requestRead = mapper.convertValue(byStatus, TimeOffRequestRead.class);
-
-                requestRead.getEmployee().setBranchName(branchName);
-
-                requestRead.getEmployee().setJobRoleTitle(
-                        byStatus.getEmployee().getJobRole().getTitle()
-                );
-
-                requests.add(requestRead);
-            }
+//            if (Objects.equals(branchId,
+//                    employeeRepository.findBranchByEmployeeId(
+//                            byStatus.getEmployee().getEmployeeId()).getBranchId())){
+//
+//                TimeOffRequestRead requestRead = mapper.convertValue(byStatus, TimeOffRequestRead.class);
+//
+//                requestRead.getEmployee().setBranchName(branchName);
+//
+//                requestRead.getEmployee().setJobRoleTitle(
+//                        byStatus.getEmployee().getJobRole().getTitle()
+//                );
+//
+//                requests.add(requestRead);
+//            }
         }
 
 

@@ -57,7 +57,7 @@ public class OverTimeServiceImpl implements OverTimeService {
         overTimeEntity.setDate(dto.getDate());
         overTimeEntity.setStartTime(dto.getStartTime());
         overTimeEntity.setEndTime(dto.getEndTime());
-        overTimeEntity.setStatusEnum(StatusEnum.PENDING);
+        overTimeEntity.setStatus(StatusEnum.PENDING);
 
         //calculate and set OT payment
         Duration duration = Duration.between(dto.getStartTime(), dto.getEndTime());
@@ -98,7 +98,7 @@ public class OverTimeServiceImpl implements OverTimeService {
 
         overTimeEntity.setManager(managerById.get());
         overTimeEntity.setApprovedDateTime(dto.getApprovedDateTime());
-        overTimeEntity.setStatusEnum(dto.getStatusEnum());
+        overTimeEntity.setStatus(dto.getStatusEnum());
 
         overTimeRepository.save(overTimeEntity);
 
@@ -119,55 +119,55 @@ public class OverTimeServiceImpl implements OverTimeService {
 
     @Override
     public List<OverTimeRequestRead> getAllByStatus(String requesterId, StatusEnum statusEnum) {
-        String branchId = employeeRepository.findBranchByEmployeeId(requesterId).getBranchId();
-        String branchName = branchRepository.findById(branchId).get().getName();
+        //String branchId = employeeRepository.findBranchByEmployeeId(requesterId).getBranchId();
+        //String branchName = branchRepository.findById(branchId).get().getName();
 
         List<OverTimeRequestRead> requests = new ArrayList<>();
 
         for (OverTimeEntity byStatus : overTimeRepository.findByStatus(statusEnum)) {
 
-            if (Objects.equals(branchId,
-                    employeeRepository.findBranchByEmployeeId(
-                            byStatus.getEmployee().getEmployeeId()).getBranchId())){
-
-                OverTimeRequestRead requestRead = mapper.convertValue(
-                        byStatus, OverTimeRequestRead.class);
-
-                requestRead.getEmployee().setBranchName(branchName);
-
-                requestRead.getEmployee().setJobRoleTitle(
-                        byStatus.getEmployee().getJobRole().getTitle()
-                );
-
-                requests.add(requestRead);
-            }
+//            if (Objects.equals(branchId,
+//                    employeeRepository.findBranchByEmployeeId(
+//                            byStatus.getEmployee().getEmployeeId()).getBranchId())){
+//
+//                OverTimeRequestRead requestRead = mapper.convertValue(
+//                        byStatus, OverTimeRequestRead.class);
+//
+//                requestRead.getEmployee().setBranchName(branchName);
+//
+//                requestRead.getEmployee().setJobRoleTitle(
+//                        byStatus.getEmployee().getJobRole().getTitle()
+//                );
+//
+//                requests.add(requestRead);
+//            }
         }
         return requests;
     }
 
     @Override
     public List<OverTimeRequestRead> getAll(String requesterId) {
-        String branchId = employeeRepository.findBranchByEmployeeId(requesterId).getBranchId();
-        String branchName = branchRepository.findById(branchId).get().getName();
+        //String branchId = employeeRepository.findBranchByEmployeeId(requesterId).getBranchId();
+        //String branchName = branchRepository.findById(branchId).get().getName();
 
         List<OverTimeRequestRead> requests = new ArrayList<>();
 
         for (OverTimeEntity byStatus : overTimeRepository.findAll()) {
 
-            if (Objects.equals(branchId,
-                    employeeRepository.findBranchByEmployeeId(
-                            byStatus.getEmployee().getEmployeeId()).getBranchId())){
-
-                OverTimeRequestRead requestRead = mapper.convertValue(byStatus, OverTimeRequestRead.class);
-
-                requestRead.getEmployee().setBranchName(branchName);
-
-                requestRead.getEmployee().setJobRoleTitle(
-                        byStatus.getEmployee().getJobRole().getTitle()
-                );
-
-                requests.add(requestRead);
-            }
+//            if (Objects.equals(branchId,
+//                    employeeRepository.findBranchByEmployeeId(
+//                            byStatus.getEmployee().getEmployeeId()).getBranchId())){
+//
+//                OverTimeRequestRead requestRead = mapper.convertValue(byStatus, OverTimeRequestRead.class);
+//
+//                requestRead.getEmployee().setBranchName(branchName);
+//
+//                requestRead.getEmployee().setJobRoleTitle(
+//                        byStatus.getEmployee().getJobRole().getTitle()
+//                );
+//
+//                requests.add(requestRead);
+//            }
         }
         return requests;
     }

@@ -17,7 +17,7 @@ public class MessageServiceImpl implements MessageService {
     private final ObjectMapper mapper;
     @Override
     public List<Message> getAllByEmployee(String employeeId) {
-        List<MessageEntity> byReceiver = messageRepository.findByReceiverEmployeeIdOrderByMessageIdDesc(employeeId);
+        List<MessageEntity> byReceiver = messageRepository.findByReceiverEmployeeIdOrderByIdDesc(employeeId);
 
         List<Message> messageList = new ArrayList<>();
 

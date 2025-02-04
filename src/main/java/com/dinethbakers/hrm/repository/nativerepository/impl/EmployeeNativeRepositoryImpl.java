@@ -27,9 +27,9 @@ public class EmployeeNativeRepositoryImpl implements EmployeeNativeRepository {
                 employee.getHiredDate(),
                 employee.getAddress(),
                 employee.getEmail(),
-                employee.getGenderEnum().name(),
-                employee.getBranch().getBranchId(),
-                employee.getJobRole().getJobRoleId(),
+                employee.getGender().name(),
+                //employee.getBranch().getBranchId(),
+                //employee.getJobRole().getJobRoleId(),
                 employee.getEmployeeId());
 
         if (rowsAffected > 0) {

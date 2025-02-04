@@ -21,14 +21,13 @@ public class BranchServiceImpl implements BranchService {
 
     @Override
     public Branch persist(Branch branch) {
-        branch.setBranchId(generateId());
         BranchEntity savedEntity = branchJpaRepository.save(mapper.convertValue(branch, BranchEntity.class));
 
         return mapper.convertValue(savedEntity, Branch.class);
     }
 
     @Override
-    public Branch getById(String id) {
+    public Branch getById(Integer id) {
         Optional<BranchEntity> byId = branchJpaRepository.findById(id);
 
         return mapper.convertValue(byId, Branch.class);
@@ -59,13 +58,13 @@ public class BranchServiceImpl implements BranchService {
     @Override
     public Branch update(Branch branch) {
         BranchEntity branchEntity = mapper.convertValue(branch, BranchEntity.class);
-        branchEntity.setBranchId(branch.getBranchId());
+        //branchEntity.setBranchId(branch.getBranchId());
         BranchEntity savedEntity = branchJpaRepository.save(branchEntity);
         return mapper.convertValue(savedEntity, Branch.class);
     }
 
     @Override
-    public Boolean delete(String id) {
+    public Boolean delete(Integer id) {
         Optional<BranchEntity> byId = branchJpaRepository.findById(id);
 
         if (byId.isPresent()){
@@ -80,20 +79,6 @@ public class BranchServiceImpl implements BranchService {
     public List<String> getAllNames() {
         return branchJpaRepository.findAllNames();
     }
-
-    private String generateId(){
-        String lastId = branchJpaRepository.findMaxBranchId();
-
-        if (lastId == null){
-            return "B001";
-        }
-
-        String numberPart = lastId.replaceAll("\\D+", "");
-        int number = Integer.parseInt(numberPart);
-        number++;
-        return "B" + String.format("%03d", number);
-    }
-
 
 
 }

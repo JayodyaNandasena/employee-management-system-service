@@ -5,6 +5,7 @@ import com.dinethbakers.hrm.model.LoginRequest;
 import com.dinethbakers.hrm.model.LoginResponse;
 import com.dinethbakers.hrm.service.AuthService;
 import com.dinethbakers.hrm.service.JwtService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

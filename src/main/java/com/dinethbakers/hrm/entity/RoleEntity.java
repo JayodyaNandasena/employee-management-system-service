@@ -3,7 +3,7 @@ package com.dinethbakers.hrm.entity;
 import com.dinethbakers.hrm.util.RoleEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Setter;
+import lombok.Data;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Table(name = "roles")
 @Entity
-@Setter
+@Data
 @Accessors(chain = true)
 public class RoleEntity {
     @Id

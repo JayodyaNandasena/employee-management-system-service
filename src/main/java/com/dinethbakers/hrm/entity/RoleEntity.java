@@ -4,6 +4,7 @@ import com.dinethbakers.hrm.util.RoleEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -37,6 +38,7 @@ public class RoleEntity {
     private Date updatedAt;
 
     @JsonIgnore
+    @ToString.Exclude
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserEntity> users;
 }

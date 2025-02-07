@@ -37,13 +37,7 @@ public class SecurityConfiguration {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable()) // Disable CSRF protection
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "auth/**",
-                                "/v3/api-docs/**",  // Allow OpenAPI docs
-                                "/swagger-ui/**",    // Allow Swagger UI assets
-                                "/swagger-ui.html",  // Allow Swagger UI main page
-                                "/swagger-resources/**",
-                                "/webjars/**")
+                        .requestMatchers("auth/**")
                         .permitAll() // Allow unauthenticated access to /auth/**
                         .anyRequest().authenticated() // Require authentication for all other requests
                 )

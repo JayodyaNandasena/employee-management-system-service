@@ -3,6 +3,7 @@ package com.dinethbakers.hrm.controller;
 import com.dinethbakers.hrm.model.Attendance;
 import com.dinethbakers.hrm.model.AttendanceRead;
 import com.dinethbakers.hrm.service.AttendanceService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,12 +21,12 @@ public class AttendanceController {
     private final AttendanceService attendanceService;
 
     @PostMapping("/clockIn")
-    public ResponseEntity<Map<String, Object>> markClockIn(@RequestBody Attendance dto){
+    public ResponseEntity<Map<String, Object>> markClockIn(@Valid @RequestBody Attendance dto){
         return attendanceService.markClockIn(dto);
     }
 
     @PostMapping("/clockOut")
-    public ResponseEntity<Map<String, Object>> markClockOut(@RequestBody Attendance dto){
+    public ResponseEntity<Map<String, Object>> markClockOut(@Valid @RequestBody Attendance dto){
         return attendanceService.markClockOut(dto);
     }
 

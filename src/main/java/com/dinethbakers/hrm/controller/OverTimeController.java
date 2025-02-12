@@ -5,6 +5,7 @@ import com.dinethbakers.hrm.model.OverTimeRequest;
 import com.dinethbakers.hrm.model.OverTimeRequestRead;
 import com.dinethbakers.hrm.service.OverTimeService;
 import com.dinethbakers.hrm.util.StatusEnum;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,12 +40,12 @@ public class OverTimeController {
 
     @PostMapping()
     @PreAuthorize("hasAnyRole('USER', 'SUPER_ADMIN')")
-    public ResponseEntity<Map<String, Object>> persistRequest(@RequestBody OverTimeRequest dto){
+    public ResponseEntity<Map<String, Object>> persistRequest(@Valid @RequestBody OverTimeRequest dto){
         return overTimeService.persistRequest(dto);
     }
 
     @PutMapping()
-    public ResponseEntity<Map<String, Object>> manageRequest(@RequestBody OverTimeApproval dto){
+    public ResponseEntity<Map<String, Object>> manageRequest(@Valid @RequestBody OverTimeApproval dto){
         return overTimeService.manageRequest(dto);
     }
 }

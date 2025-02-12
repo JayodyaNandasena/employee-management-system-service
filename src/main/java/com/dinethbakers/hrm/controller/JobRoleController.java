@@ -2,6 +2,7 @@ package com.dinethbakers.hrm.controller;
 
 import com.dinethbakers.hrm.model.JobRole;
 import com.dinethbakers.hrm.service.JobRoleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class JobRoleController {
     private final JobRoleService jobRoleService;
 
     @PostMapping
-    public JobRole persist(@RequestBody JobRole jobRole){
+    public JobRole persist(@Valid @RequestBody JobRole jobRole){
         return jobRoleService.persist(jobRole);
     }
 

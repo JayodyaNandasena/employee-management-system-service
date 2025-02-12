@@ -6,6 +6,7 @@ import com.dinethbakers.hrm.model.LoginResponse;
 import com.dinethbakers.hrm.service.AuthService;
 import com.dinethbakers.hrm.service.JwtService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class AuthController {
     private final JwtService jwtService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginRequest loginUserDto) {
+    public ResponseEntity<LoginResponse> authenticate(@Valid @RequestBody LoginRequest loginUserDto) {
         UserEntity authenticatedUser = authService.validateLogin(loginUserDto);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);

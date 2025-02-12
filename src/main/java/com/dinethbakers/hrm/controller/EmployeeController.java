@@ -3,6 +3,7 @@ package com.dinethbakers.hrm.controller;
 import com.dinethbakers.hrm.model.EmployeeCreate;
 import com.dinethbakers.hrm.model.response.SuccessResponse;
 import com.dinethbakers.hrm.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,7 +19,7 @@ public class EmployeeController {
     // TODO: create separate create methods for dep manager, branch manager and admin
     @PostMapping
     @PreAuthorize("hasAnyRole('DEPARTMENT_MANAGER', 'BRANCH_MANAGER', 'SUPER_ADMIN')")
-    public ResponseEntity<SuccessResponse> persist(@RequestBody EmployeeCreate dto){
+    public ResponseEntity<SuccessResponse> persist(@Valid @RequestBody EmployeeCreate dto){
         SuccessResponse successResponse = SuccessResponse.builder()
                 .data(employeeService.persist(dto))
                 .build();
@@ -28,7 +29,7 @@ public class EmployeeController {
     // TODO: create seperate update methods for user, dep manager and branch manager
     @PutMapping
     @PreAuthorize("hasAnyRole('USER', 'DEPARTMENT_MANAGER', 'BRANCH_MANAGER', 'SUPER_ADMIN')")
-    public EmployeeCreate update(@RequestBody EmployeeCreate dto){
+    public EmployeeCreate update(@Valid @RequestBody EmployeeCreate dto){
         return employeeService.update(dto);
     }
 

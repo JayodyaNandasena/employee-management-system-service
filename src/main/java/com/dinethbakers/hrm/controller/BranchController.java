@@ -2,6 +2,7 @@ package com.dinethbakers.hrm.controller;
 
 import com.dinethbakers.hrm.model.Branch;
 import com.dinethbakers.hrm.service.BranchService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class BranchController {
     private final BranchService service;
 
     @PostMapping
-    Branch persist(@RequestBody Branch branch){
+    Branch persist(@Valid @RequestBody Branch branch){
         return service.persist(branch);
     }
 
@@ -45,7 +46,7 @@ public class BranchController {
     }
 
     @PutMapping
-    Branch update(@RequestBody Branch branch){
+    Branch update(@Valid @RequestBody Branch branch){
         return service.update(branch);
     }
 

@@ -5,6 +5,7 @@ import com.dinethbakers.hrm.model.TimeOffRequest;
 import com.dinethbakers.hrm.model.TimeOffRequestRead;
 import com.dinethbakers.hrm.service.TimeOffService;
 import com.dinethbakers.hrm.util.StatusEnum;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -38,12 +39,12 @@ import java.util.Map;
 
     @PostMapping()
     @PreAuthorize("hasAnyRole('USER', 'SUPER_ADMIN')")
-    public ResponseEntity<Map<String, Object>> persistRequest(@RequestBody TimeOffRequest dto){
+    public ResponseEntity<Map<String, Object>> persistRequest(@Valid @RequestBody TimeOffRequest dto){
         return timeOffService.persistRequest(dto);
     }
 
     @PutMapping()
-    public ResponseEntity<Map<String, Object>> manageRequest(@RequestBody TimeOffApproval dto){
+    public ResponseEntity<Map<String, Object>> manageRequest(@Valid @RequestBody TimeOffApproval dto){
         return timeOffService.manageRequest(dto);
     }
 }

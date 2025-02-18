@@ -97,8 +97,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                             AccountCreate.class)
             );
 
-            employee.setBranchName(byId.get().getBranch().getName());
-            employee.setJobRoleTitle(byId.get().getJobRole().getTitle());
+//            employee.setBranchName(byId.get().getBranch().getName());
+//            employee.setJobRoleTitle(byId.get().getJobRole().getTitle());
 
             return ResponseEntity.ok(employee);
         }

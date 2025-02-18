@@ -50,30 +50,30 @@ public class EmployeeEntity {
     private Date updatedAt;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private UserEntity account;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private BranchEntity branch;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<EmployeeMobileEntity> mobileNumbers;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<AttendanceEntity> attendanceRecords;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "job_role_id", referencedColumnName = "id")
     private JobRoleEntity jobRole;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     List<TimeOffEntity> timeOffList;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employees", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employees", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MessageEntity> messages;
 
 }

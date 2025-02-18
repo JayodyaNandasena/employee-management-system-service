@@ -10,16 +10,18 @@ import com.dinethbakers.hrm.repository.jparepository.EmployeeRepository;
 import com.dinethbakers.hrm.service.AttendanceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalTime;
 import java.time.Duration;
+import java.time.LocalTime;
 import java.util.*;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AttendanceServiceImpl implements AttendanceService {
     private final AttendanceRepository attendanceRepository;
     private final EmployeeRepository employeeRepository;
@@ -89,7 +91,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         }
 
         result.put(key1, false);
-        result.put(key2, "Location mismatch: You must clock in within 1 km of your branch.");
+        result.put(key2, "Location mismatch: You must clock out within 1 km of your branch.");
         return new ResponseEntity<>(result, HttpStatus.FORBIDDEN);
     }
 
@@ -100,8 +102,12 @@ public class AttendanceServiceImpl implements AttendanceService {
         Optional<EmployeeEntity> employeeById = employeeRepository.findById(employeeId);
 
         if (employeeById.isEmpty()){
+            log.info("Employee not found");
             return Collections.emptyList();
         }
+
+        log.info("Employee found: {}", employeeById.get());
+
 
         for (AttendanceEntity entity : attendanceRepository.findByEmployeeOrderByDateDesc(employeeById.get())) {
             AttendanceRead attendanceRead = mapper.convertValue(entity, AttendanceRead.class);

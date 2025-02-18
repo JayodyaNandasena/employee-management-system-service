@@ -3,6 +3,7 @@ package com.dinethbakers.hrm.exceptions;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.SignatureException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -18,12 +19,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
-@Slf4j
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
-    public ProblemDetail handleSecurityException(Exception exception, HttpServletRequest request) {
+    public ProblemDetail handleSecurityException(Exception exception) {
         ProblemDetail errorDetail = null;
 
         log.error(exception.getMessage());

@@ -42,7 +42,7 @@ public class UserEntity implements UserDetails {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
-    @ToString.Exclude
+    //@ToString.Exclude
     private EmployeeEntity employee;
 
     @Getter

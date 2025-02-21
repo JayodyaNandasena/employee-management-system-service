@@ -1,10 +1,12 @@
 package com.dinethbakers.hrm.service;
 
+import com.dinethbakers.hrm.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,6 +41,10 @@ public class JwtService {
                 .findFirst()
                 .map(GrantedAuthority::getAuthority)
                 .orElse(null));
+
+        if (userDetails instanceof UserEntity user && user.getEmployee() != null) {
+            claims.put("id", user.getEmployee().getEmployeeId());
+        }
 
         return generateToken(claims, userDetails);
     }

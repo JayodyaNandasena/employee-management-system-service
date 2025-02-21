@@ -38,4 +38,12 @@ public class EmployeeNativeRepositoryImpl implements EmployeeNativeRepository {
             return null;
         }
     }
+
+    @Override
+    public String nameById(String id) {
+        String sql = "SELECT first_name, last_name FROM employee WHERE employee_id = ?";
+
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) ->
+                rs.getString("first_name") + " " + rs.getString("last_name"), id);
+    }
 }

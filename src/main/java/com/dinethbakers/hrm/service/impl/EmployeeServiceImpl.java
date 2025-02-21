@@ -23,6 +23,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -104,6 +106,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @Override
+    public ResponseEntity<Map<String,String>> getNameById(String id) {
+        Map<String,String> nameResult = new HashMap<>();
+        nameResult.put("name",employeeNativeRepository.nameById(id));
+        return ResponseEntity.ok(nameResult);
     }
 
 

@@ -9,10 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 @CrossOrigin
 @RequestMapping("/employee")
 @RestController
+@PreAuthorize("hasAnyRole('USER', 'DEPARTMENT_MANAGER', 'BRANCH_MANAGER', 'SUPER_ADMIN')")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -28,14 +31,16 @@ public class EmployeeController {
 
     // TODO: create seperate update methods for user, dep manager and branch manager
     @PutMapping
-    @PreAuthorize("hasAnyRole('USER', 'DEPARTMENT_MANAGER', 'BRANCH_MANAGER', 'SUPER_ADMIN')")
     public EmployeeCreate update(@Valid @RequestBody EmployeeCreate dto){
         return employeeService.update(dto);
     }
 
     @GetMapping("/by-id")
-    @PreAuthorize("hasAnyRole('DEPARTMENT_MANAGER', 'BRANCH_MANAGER', 'SUPER_ADMIN')")
     public ResponseEntity<EmployeeCreate> getById(@RequestParam String id){
         return employeeService.getById(id);
     }
+
+    @GetMapping("/name")
+    public ResponseEntity<Map<String,String>> getNameById(@RequestParam String id){return employeeService.getNameById(id);}
+
 }

@@ -20,10 +20,14 @@ public class Attendance {
     private LocalTime time;
 
     @NotNull(message = "Latitude cannot be null")
-    @Digits(integer = 3, fraction = 6, message = "Latitude must be a valid coordinate")
+    @DecimalMin(value = "-90.0", message = "Latitude must be between -90 and 90")
+    @DecimalMax(value = "90.0", message = "Latitude must be less than -90 and 90")
+    @Digits(integer = 2, fraction = 7, message = "Latitude must have at most 7 decimal places")
     private Double latitude;
 
     @NotNull(message = "Longitude cannot be null")
-    @Digits(integer = 3, fraction = 6, message = "Longitude must be a valid coordinate")
+    @DecimalMin(value = "-180.0", message = "Longitude must be between -180 and 180")
+    @DecimalMax(value = "180.0", message = "Longitude must be between -180 and 180")
+    @Digits(integer = 3, fraction = 7, message = "Longitude must have at most 7 decimal places")
     private Double longitude;
 }

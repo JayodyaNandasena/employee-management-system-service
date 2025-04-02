@@ -6,13 +6,14 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 @Table(name = "time_off")
 @Data
-public class TimeOffEntity {
+public class TimeOffEntity implements Serializable {
     @Id
     private String requestId;
 

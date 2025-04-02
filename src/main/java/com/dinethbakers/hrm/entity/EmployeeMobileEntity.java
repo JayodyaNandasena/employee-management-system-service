@@ -6,12 +6,13 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "employee_mobile")
 @Data
-public class EmployeeMobileEntity {
+public class EmployeeMobileEntity implements Serializable {
     @Id
     private String number;
 

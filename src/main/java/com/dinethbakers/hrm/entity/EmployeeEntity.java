@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @Accessors(chain = true)
-public class EmployeeEntity {
+public class EmployeeEntity implements Serializable {
     @Id
     @Column(name = "employee_id")
     private String employeeId;
@@ -50,30 +51,30 @@ public class EmployeeEntity {
     private Date updatedAt;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private UserEntity account;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private BranchEntity branch;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EmployeeMobileEntity> mobileNumbers;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AttendanceEntity> attendanceRecords;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_role_id", referencedColumnName = "id")
     private JobRoleEntity jobRole;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    List<TimeOffEntity> timeOffList;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TimeOffEntity> timeOffList;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "employees", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employees", cascade = CascadeType.ALL)
     private List<MessageEntity> messages;
 
 }

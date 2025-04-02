@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "attendance")
 @Data
-public class AttendanceEntity {
+public class AttendanceEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer attendanceId;

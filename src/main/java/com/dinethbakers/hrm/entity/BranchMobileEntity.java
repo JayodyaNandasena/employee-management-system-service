@@ -5,12 +5,13 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "branch_mobile")
 @Data
-public class BranchMobileEntity {
+public class BranchMobileEntity implements Serializable {
     @Id
     private String number;
 

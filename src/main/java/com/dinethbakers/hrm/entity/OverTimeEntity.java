@@ -6,6 +6,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -14,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "over_time")
 @Data
-public class OverTimeEntity {
+public class OverTimeEntity implements Serializable {
     @Id
     @Column(name = "request_id")
     private String requestId;

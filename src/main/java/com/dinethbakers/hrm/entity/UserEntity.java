@@ -3,13 +3,13 @@ package com.dinethbakers.hrm.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @Data
-public class UserEntity implements UserDetails {
+public class UserEntity implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
@@ -42,7 +42,6 @@ public class UserEntity implements UserDetails {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
-    //@ToString.Exclude
     private EmployeeEntity employee;
 
     @Getter

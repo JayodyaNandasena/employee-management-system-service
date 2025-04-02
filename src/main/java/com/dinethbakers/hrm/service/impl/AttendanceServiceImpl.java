@@ -105,10 +105,7 @@ public class AttendanceServiceImpl implements AttendanceService {
             log.info("Employee not found");
             return Collections.emptyList();
         }
-
-        log.info("Employee found: {}", employeeById.get());
-
-
+        
         for (AttendanceEntity entity : attendanceRepository.findByEmployeeOrderByDateDesc(employeeById.get())) {
             AttendanceRead attendanceRead = mapper.convertValue(entity, AttendanceRead.class);
             attendanceRead.setEmployeeName(

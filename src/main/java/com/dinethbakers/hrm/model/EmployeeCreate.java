@@ -44,7 +44,7 @@ public class EmployeeCreate {
     private String email;
 
     @NotNull(message = "Gender must be specified")
-    private GenderEnum genderEnum;
+    private GenderEnum gender;
 
     @NotBlank(message = "Branch name cannot be empty")
     private String branchName;

@@ -19,7 +19,7 @@ public class EmployeeRead {
     private GenderEnum genderEnum;
     private Branch branch;
     private JobRole jobRole;
-    private AccountCreate account;
+    private AccountRead account;
     //private List<EmployeeMobile> mobileNumbers;
     //private List<Attendance> attendanceRecords;
     //List<TimeOff> timeOffList;

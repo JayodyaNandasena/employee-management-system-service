@@ -1,6 +1,7 @@
 package com.dinethbakers.hrm.controller;
 
 import com.dinethbakers.hrm.model.EmployeeCreate;
+import com.dinethbakers.hrm.model.EmployeeRead;
 import com.dinethbakers.hrm.model.response.SuccessResponse;
 import com.dinethbakers.hrm.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -29,7 +30,8 @@ public class EmployeeController {
         return ResponseEntity.ok().body(successResponse);
     }
 
-    // TODO: create seperate update methods for user, dep manager and branch manager
+    // TODO: add password reset
+    // TODO: create separate update methods for user, dep manager and branch manager
     @PutMapping
     public EmployeeCreate update(@Valid @RequestBody EmployeeCreate dto){
         return employeeService.update(dto);

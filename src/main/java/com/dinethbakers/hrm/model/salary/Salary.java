@@ -19,5 +19,4 @@ public class Salary {
     private BigDecimal grossEarnings;
     private BigDecimal grossDeductions;
     private BigDecimal grossSalary;
-
 }

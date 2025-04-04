@@ -18,7 +18,7 @@ public class TimeOffApproval {
     private String requestId;
 
     @NotNull(message = "Status cannot be null")
-    private StatusEnum statusEnum;
+    private StatusEnum status;
 
     @NotNull(message = "Approved date-time cannot be null")
     @PastOrPresent(message = "Approved date-time must be in the past or present")

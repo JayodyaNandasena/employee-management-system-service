@@ -1,4 +1,4 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.account;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

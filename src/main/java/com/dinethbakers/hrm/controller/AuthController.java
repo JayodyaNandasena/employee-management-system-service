@@ -1,11 +1,10 @@
 package com.dinethbakers.hrm.controller;
 
 import com.dinethbakers.hrm.entity.UserEntity;
-import com.dinethbakers.hrm.model.LoginRequest;
-import com.dinethbakers.hrm.model.LoginResponse;
+import com.dinethbakers.hrm.model.login.LoginRequest;
+import com.dinethbakers.hrm.model.login.LoginResponse;
 import com.dinethbakers.hrm.service.AuthService;
 import com.dinethbakers.hrm.service.JwtService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

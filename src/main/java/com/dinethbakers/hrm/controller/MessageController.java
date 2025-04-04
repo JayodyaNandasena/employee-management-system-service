@@ -1,6 +1,6 @@
 package com.dinethbakers.hrm.controller;
 
-import com.dinethbakers.hrm.model.Message;
+import com.dinethbakers.hrm.model.messages.Message;
 import com.dinethbakers.hrm.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

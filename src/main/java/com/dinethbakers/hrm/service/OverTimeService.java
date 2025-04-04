@@ -1,6 +1,8 @@
 package com.dinethbakers.hrm.service;
 
-import com.dinethbakers.hrm.model.*;
+import com.dinethbakers.hrm.model.overTime.OverTimeApproval;
+import com.dinethbakers.hrm.model.overTime.OverTimeRequest;
+import com.dinethbakers.hrm.model.overTime.OverTimeRequestRead;
 import com.dinethbakers.hrm.util.StatusEnum;
 import org.springframework.http.ResponseEntity;
 

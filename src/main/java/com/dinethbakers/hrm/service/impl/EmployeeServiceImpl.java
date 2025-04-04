@@ -4,9 +4,10 @@ import com.dinethbakers.hrm.entity.UserEntity;
 import com.dinethbakers.hrm.entity.BranchEntity;
 import com.dinethbakers.hrm.entity.EmployeeEntity;
 import com.dinethbakers.hrm.entity.JobRoleEntity;
-import com.dinethbakers.hrm.model.AccountCreate;
-import com.dinethbakers.hrm.model.EmployeeCreate;
-import com.dinethbakers.hrm.model.EmployeeRead;
+import com.dinethbakers.hrm.model.account.AccountCreate;
+import com.dinethbakers.hrm.model.employee.EmployeeCreate;
+import com.dinethbakers.hrm.model.employee.EmployeeRead;
+import com.dinethbakers.hrm.model.employee.EmployeeUpdate;
 import com.dinethbakers.hrm.repository.jparepository.UserRepository;
 import com.dinethbakers.hrm.repository.jparepository.BranchRepository;
 import com.dinethbakers.hrm.repository.jparepository.EmployeeRepository;
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
@@ -39,6 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final ObjectMapper mapper;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+
     @Override
     public EmployeeRead persist(EmployeeCreate dto) {
         EmployeeEntity entity = mapper.convertValue(dto, EmployeeEntity.class);
@@ -59,25 +62,50 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeCreate update(EmployeeCreate dto) {
         EmployeeEntity entity = mapper.convertValue(dto, EmployeeEntity.class);
-        entity.setBranch(getBranchByName(dto.getBranchName()));
-        entity.setJobRole(getJobRoleByTitle(dto.getJobRoleTitle()));
+
+        BranchEntity branch = getBranchByName(dto.getBranchName());
+        if (branch == null) throw new NotFoundException("Branch not found");
+
+        JobRoleEntity jobRole = getJobRoleByTitle(dto.getJobRoleTitle());
+        if (jobRole == null) throw new NotFoundException("Job role not found");
+
+        entity.setBranch(branch);
+        entity.setJobRole(jobRole);
 
         //update employee table
         EmployeeEntity editedEntity = employeeNativeRepository.editEmployee(entity);
 
         EmployeeCreate savedEmployee = mapper.convertValue(editedEntity, EmployeeCreate.class);
 
-        //update account table
+        //update account table if details present
+        if (dto.getAccount() != null) {
+            UserEntity userEntity = mapper.convertValue(dto.getAccount(), UserEntity.class);
+            userEntity.setEmployee(entity);
+            userEntity.setPassword(BCrypt.hashpw(dto.getAccount().getPassword(), BCrypt.gensalt()));
 
-        UserEntity userEntity = mapper.convertValue(dto.getAccount(), UserEntity.class);
-        userEntity.setEmployee(entity);
-        //userEntity.setPassword(BCrypt.hashpw(dto.getAccount().getPassword(), BCrypt.gensalt()));
+            savedEmployee.setAccount(
+                    mapper.convertValue(
+                            accountNativeRepository.editAccount(userEntity),
+                            AccountCreate.class)
+            );
+        }
 
-        savedEmployee.setAccount(
-                mapper.convertValue(
-                        accountNativeRepository.editAccount(userEntity),
-                        AccountCreate.class)
+        savedEmployee.setBranchName(editedEntity.getBranch().getName());
+
+        savedEmployee.setJobRoleTitle(
+                editedEntity.getJobRole().getTitle()
         );
+        return savedEmployee;
+    }
+
+    @Override
+    public EmployeeCreate updateProfile(EmployeeUpdate dto) {
+        EmployeeEntity entity = mapper.convertValue(dto, EmployeeEntity.class);
+
+        //update employee table
+        EmployeeEntity editedEntity = employeeNativeRepository.editProfile(entity);
+
+        EmployeeCreate savedEmployee = mapper.convertValue(editedEntity, EmployeeCreate.class);
 
         savedEmployee.setBranchName(editedEntity.getBranch().getName());
 
@@ -109,17 +137,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public ResponseEntity<Map<String,String>> getNameById(String id) {
-        Map<String,String> nameResult = new HashMap<>();
-        nameResult.put("name",employeeNativeRepository.nameById(id));
+    public ResponseEntity<Map<String, String>> getNameById(String id) {
+        Map<String, String> nameResult = new HashMap<>();
+        nameResult.put("name", employeeNativeRepository.nameById(id));
         return ResponseEntity.ok(nameResult);
     }
 
 
-    private String generateId(){
+    private String generateId() {
         String maxId = employeeRepository.findMaxEmployeeId();
 
-        if (maxId == null){
+        if (maxId == null) {
             return "E001";
         }
 
@@ -128,7 +156,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         number++;
         return "E" + String.format("%03d", number);
     }
-    private AccountCreate persistAccount(String employeeId, AccountCreate accountCreate){
+
+    private AccountCreate persistAccount(String employeeId, AccountCreate accountCreate) {
 
         Optional<EmployeeEntity> byId = employeeRepository.findById(employeeId);
 
@@ -156,12 +185,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         throw new NotFoundException("employee not found");
     }
 
-    private BranchEntity getBranchByName(String name){
+    private BranchEntity getBranchByName(String name) {
         Optional<BranchEntity> branchByName = branchRepository.findByName(name);
         return branchByName.orElse(null);
     }
 
-    private JobRoleEntity getJobRoleByTitle(String title){
+    private JobRoleEntity getJobRoleByTitle(String title) {
         Optional<JobRoleEntity> jobRoleByTitle = jobRoleRepository.findByTitle(title);
         return jobRoleByTitle.orElse(null);
     }

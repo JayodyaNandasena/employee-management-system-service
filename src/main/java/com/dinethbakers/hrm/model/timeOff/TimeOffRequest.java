@@ -1,4 +1,4 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.timeOff;
 
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;

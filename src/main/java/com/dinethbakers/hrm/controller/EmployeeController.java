@@ -1,7 +1,7 @@
 package com.dinethbakers.hrm.controller;
 
-import com.dinethbakers.hrm.model.EmployeeCreate;
-import com.dinethbakers.hrm.model.EmployeeRead;
+import com.dinethbakers.hrm.model.employee.EmployeeCreate;
+import com.dinethbakers.hrm.model.employee.EmployeeUpdate;
 import com.dinethbakers.hrm.model.response.SuccessResponse;
 import com.dinethbakers.hrm.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -32,9 +32,15 @@ public class EmployeeController {
 
     // TODO: add password reset
     // TODO: create separate update methods for user, dep manager and branch manager
+    @PreAuthorize("hasAnyRole('DEPARTMENT_MANAGER', 'BRANCH_MANAGER', 'SUPER_ADMIN')")
     @PutMapping
     public EmployeeCreate update(@Valid @RequestBody EmployeeCreate dto){
         return employeeService.update(dto);
+    }
+
+    @PutMapping("/profile")
+    public EmployeeCreate updateProfile(@Valid @RequestBody EmployeeUpdate dto){
+        return employeeService.updateProfile(dto);
     }
 
     @GetMapping("/by-id")

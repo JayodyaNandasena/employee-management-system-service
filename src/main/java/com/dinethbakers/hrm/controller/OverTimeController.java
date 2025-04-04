@@ -1,8 +1,8 @@
 package com.dinethbakers.hrm.controller;
 
-import com.dinethbakers.hrm.model.OverTimeApproval;
-import com.dinethbakers.hrm.model.OverTimeRequest;
-import com.dinethbakers.hrm.model.OverTimeRequestRead;
+import com.dinethbakers.hrm.model.overTime.OverTimeApproval;
+import com.dinethbakers.hrm.model.overTime.OverTimeRequest;
+import com.dinethbakers.hrm.model.overTime.OverTimeRequestRead;
 import com.dinethbakers.hrm.service.OverTimeService;
 import com.dinethbakers.hrm.util.StatusEnum;
 import jakarta.validation.Valid;
@@ -29,8 +29,8 @@ public class OverTimeController {
     @GetMapping("/byStatus")
     public List<OverTimeRequestRead> getAllByStatus(
             @RequestParam StatusEnum statusEnum,
-            @RequestParam String requestorId){
-        return overTimeService.getAllByStatus(requestorId, statusEnum);
+            @RequestParam String requesterId){
+        return overTimeService.getAllByStatus(requesterId, statusEnum);
     }
 
     @GetMapping("/byId")

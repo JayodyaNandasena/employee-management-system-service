@@ -1,7 +1,10 @@
 package com.dinethbakers.hrm.service.impl;
 
 import com.dinethbakers.hrm.entity.*;
-import com.dinethbakers.hrm.model.*;
+import com.dinethbakers.hrm.model.jobRole.JobRole;
+import com.dinethbakers.hrm.model.leavePolicy.LeavePolicy;
+import com.dinethbakers.hrm.model.salary.SalaryPolicy;
+import com.dinethbakers.hrm.model.shiftPolicy.ShiftPolicy;
 import com.dinethbakers.hrm.repository.jparepository.*;
 import com.dinethbakers.hrm.service.JobRoleService;
 import com.dinethbakers.hrm.util.ShiftTypeEnum;
@@ -27,6 +30,7 @@ public class JobRoleServiceImpl implements JobRoleService {
 
     @Override
     public JobRole persist(JobRole dto) {
+        // TODO: check job role existence
 
         JobRoleEntity jobRoleEntity = mapper.convertValue(dto, JobRoleEntity.class);
 

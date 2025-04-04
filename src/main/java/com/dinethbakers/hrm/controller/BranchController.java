@@ -1,6 +1,6 @@
 package com.dinethbakers.hrm.controller;
 
-import com.dinethbakers.hrm.model.Branch;
+import com.dinethbakers.hrm.model.branch.Branch;
 import com.dinethbakers.hrm.service.BranchService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

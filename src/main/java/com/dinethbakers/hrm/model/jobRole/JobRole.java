@@ -1,5 +1,8 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.jobRole;
 
+import com.dinethbakers.hrm.model.shiftPolicy.ShiftPolicy;
+import com.dinethbakers.hrm.model.leavePolicy.LeavePolicy;
+import com.dinethbakers.hrm.model.salary.SalaryPolicy;
 import com.dinethbakers.hrm.util.ShiftTypeEnum;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

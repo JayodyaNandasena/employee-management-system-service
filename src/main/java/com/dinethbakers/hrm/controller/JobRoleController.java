@@ -1,6 +1,6 @@
 package com.dinethbakers.hrm.controller;
 
-import com.dinethbakers.hrm.model.JobRole;
+import com.dinethbakers.hrm.model.jobRole.JobRole;
 import com.dinethbakers.hrm.service.JobRoleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

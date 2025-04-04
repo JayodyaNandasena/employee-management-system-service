@@ -1,6 +1,6 @@
 package com.dinethbakers.hrm.service;
 
-import com.dinethbakers.hrm.model.Message;
+import com.dinethbakers.hrm.model.messages.Message;
 
 import java.util.List;
 

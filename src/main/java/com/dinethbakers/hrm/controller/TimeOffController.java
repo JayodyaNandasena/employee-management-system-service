@@ -1,8 +1,8 @@
 package com.dinethbakers.hrm.controller;
 
-import com.dinethbakers.hrm.model.TimeOffApproval;
-import com.dinethbakers.hrm.model.TimeOffRequest;
-import com.dinethbakers.hrm.model.TimeOffRequestRead;
+import com.dinethbakers.hrm.model.timeOff.TimeOffApproval;
+import com.dinethbakers.hrm.model.timeOff.TimeOffRequest;
+import com.dinethbakers.hrm.model.timeOff.TimeOffRequestRead;
 import com.dinethbakers.hrm.service.TimeOffService;
 import com.dinethbakers.hrm.util.StatusEnum;
 import jakarta.validation.Valid;
@@ -28,8 +28,8 @@ import java.util.Map;
     @GetMapping("/byStatus")
     public List<TimeOffRequestRead> getAllByStatus(
             @RequestParam StatusEnum statusEnum,
-            @RequestParam String requestorId){
-        return timeOffService.getAllByStatus(requestorId, statusEnum);
+            @RequestParam String requesterId){
+        return timeOffService.getAllByStatus(requesterId, statusEnum);
     }
 
     @GetMapping("/byId")

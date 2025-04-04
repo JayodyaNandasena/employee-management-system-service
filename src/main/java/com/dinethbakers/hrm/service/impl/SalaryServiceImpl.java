@@ -3,7 +3,7 @@ package com.dinethbakers.hrm.service.impl;
 import com.dinethbakers.hrm.entity.EmployeeEntity;
 import com.dinethbakers.hrm.entity.JobRoleEntity;
 import com.dinethbakers.hrm.entity.SalaryPolicyEntity;
-import com.dinethbakers.hrm.model.Salary;
+import com.dinethbakers.hrm.model.salary.Salary;
 import com.dinethbakers.hrm.repository.jparepository.EmployeeRepository;
 import com.dinethbakers.hrm.repository.jparepository.OverTimeRepository;
 import com.dinethbakers.hrm.service.SalaryService;

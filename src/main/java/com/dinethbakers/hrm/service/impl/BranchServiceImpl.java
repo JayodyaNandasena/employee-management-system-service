@@ -1,7 +1,7 @@
 package com.dinethbakers.hrm.service.impl;
 
 import com.dinethbakers.hrm.entity.BranchEntity;
-import com.dinethbakers.hrm.model.Branch;
+import com.dinethbakers.hrm.model.branch.Branch;
 import com.dinethbakers.hrm.repository.jparepository.BranchRepository;
 import com.dinethbakers.hrm.service.BranchService;
 import com.fasterxml.jackson.databind.ObjectMapper;

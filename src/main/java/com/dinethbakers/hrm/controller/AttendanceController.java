@@ -1,7 +1,7 @@
 package com.dinethbakers.hrm.controller;
 
-import com.dinethbakers.hrm.model.Attendance;
-import com.dinethbakers.hrm.model.AttendanceRead;
+import com.dinethbakers.hrm.model.attendance.Attendance;
+import com.dinethbakers.hrm.model.attendance.AttendanceRead;
 import com.dinethbakers.hrm.service.AttendanceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

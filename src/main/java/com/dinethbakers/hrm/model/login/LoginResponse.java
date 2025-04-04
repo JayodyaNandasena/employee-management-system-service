@@ -1,4 +1,4 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.login;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

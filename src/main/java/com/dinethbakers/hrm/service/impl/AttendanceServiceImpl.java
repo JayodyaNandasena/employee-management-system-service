@@ -3,8 +3,8 @@ package com.dinethbakers.hrm.service.impl;
 import com.dinethbakers.hrm.entity.AttendanceEntity;
 import com.dinethbakers.hrm.entity.BranchEntity;
 import com.dinethbakers.hrm.entity.EmployeeEntity;
-import com.dinethbakers.hrm.model.Attendance;
-import com.dinethbakers.hrm.model.AttendanceRead;
+import com.dinethbakers.hrm.model.attendance.Attendance;
+import com.dinethbakers.hrm.model.attendance.AttendanceRead;
 import com.dinethbakers.hrm.repository.jparepository.AttendanceRepository;
 import com.dinethbakers.hrm.repository.jparepository.EmployeeRepository;
 import com.dinethbakers.hrm.service.AttendanceService;
@@ -105,7 +105,7 @@ public class AttendanceServiceImpl implements AttendanceService {
             log.info("Employee not found");
             return Collections.emptyList();
         }
-        
+
         for (AttendanceEntity entity : attendanceRepository.findByEmployeeOrderByDateDesc(employeeById.get())) {
             AttendanceRead attendanceRead = mapper.convertValue(entity, AttendanceRead.class);
             attendanceRead.setEmployeeName(

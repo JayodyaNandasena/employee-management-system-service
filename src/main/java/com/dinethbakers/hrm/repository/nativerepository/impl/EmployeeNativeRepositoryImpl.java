@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 public class EmployeeNativeRepositoryImpl implements EmployeeNativeRepository {
     private final JdbcTemplate jdbcTemplate;
     private final EmployeeRepository jpaRepository;
+
     @Override
     public EmployeeEntity editEmployee(EmployeeEntity employee) {
         String sql = "UPDATE employee SET first_name = ?, " +
@@ -30,6 +31,27 @@ public class EmployeeNativeRepositoryImpl implements EmployeeNativeRepository {
                 employee.getGender().name(),
                 //employee.getBranch().getBranchId(),
                 //employee.getJobRole().getJobRoleId(),
+                employee.getEmployeeId());
+
+        if (rowsAffected > 0) {
+            return jpaRepository.findById(employee.getEmployeeId()).get();
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public EmployeeEntity editProfile(EmployeeEntity employee) {
+        String sql = "UPDATE employee SET first_name = ?, " +
+                "last_name = ?, profile_picture = ?, " +
+                "address = ?, email = ?" +
+                "WHERE employee_id = ?";
+        int rowsAffected = jdbcTemplate.update(sql,
+                employee.getFirstName(),
+                employee.getLastName(),
+                employee.getProfilePicture(),
+                employee.getAddress(),
+                employee.getEmail(),
                 employee.getEmployeeId());
 
         if (rowsAffected > 0) {

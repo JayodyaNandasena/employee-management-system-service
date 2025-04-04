@@ -1,6 +1,6 @@
 package com.dinethbakers.hrm.service;
 
-import com.dinethbakers.hrm.model.Branch;
+import com.dinethbakers.hrm.model.branch.Branch;
 
 import java.util.List;
 

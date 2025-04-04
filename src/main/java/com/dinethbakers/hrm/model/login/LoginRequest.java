@@ -1,4 +1,4 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.login;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

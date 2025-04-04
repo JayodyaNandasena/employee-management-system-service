@@ -1,7 +1,7 @@
 package com.dinethbakers.hrm.service;
 
-import com.dinethbakers.hrm.model.Attendance;
-import com.dinethbakers.hrm.model.AttendanceRead;
+import com.dinethbakers.hrm.model.attendance.Attendance;
+import com.dinethbakers.hrm.model.attendance.AttendanceRead;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

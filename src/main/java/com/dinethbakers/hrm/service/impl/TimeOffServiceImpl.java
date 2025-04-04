@@ -3,9 +3,9 @@ package com.dinethbakers.hrm.service.impl;
 import com.dinethbakers.hrm.entity.EmployeeEntity;
 import com.dinethbakers.hrm.entity.MessageEntity;
 import com.dinethbakers.hrm.entity.TimeOffEntity;
-import com.dinethbakers.hrm.model.TimeOffApproval;
-import com.dinethbakers.hrm.model.TimeOffRequest;
-import com.dinethbakers.hrm.model.TimeOffRequestRead;
+import com.dinethbakers.hrm.model.timeOff.TimeOffApproval;
+import com.dinethbakers.hrm.model.timeOff.TimeOffRequest;
+import com.dinethbakers.hrm.model.timeOff.TimeOffRequestRead;
 import com.dinethbakers.hrm.repository.jparepository.BranchRepository;
 import com.dinethbakers.hrm.repository.jparepository.EmployeeRepository;
 import com.dinethbakers.hrm.repository.jparepository.MessageRepository;
@@ -70,7 +70,6 @@ public class TimeOffServiceImpl implements TimeOffService {
         String key1 = "status";
         String key2 = "message";
 
-
         Optional<EmployeeEntity> managerById = employeeRepository.findById(dto.getManagerId());
 
         if (managerById.isEmpty()){
@@ -91,13 +90,13 @@ public class TimeOffServiceImpl implements TimeOffService {
 
         timeOffEntity.setManager(managerById.get());
         timeOffEntity.setApprovedDateTime(dto.getApprovedDateTime());
-        timeOffEntity.setStatus(dto.getStatusEnum());
+        timeOffEntity.setStatus(dto.getStatus());
 
         timeOffRepository.save(timeOffEntity);
 
         sendMessage(dto);
 
-        if (StatusEnum.APPROVED == dto.getStatusEnum()){
+        if (StatusEnum.APPROVED == dto.getStatus()){
             result.put(key1, true);
             result.put(key2, "Request approved successfully.");
             return new ResponseEntity<>(result, HttpStatus.OK);
@@ -226,7 +225,7 @@ public class TimeOffServiceImpl implements TimeOffService {
                 "Time Off request" +
                         " from " + startTime + " on " + startDate +
                         " to " + endTime + " on " + endDate +
-                        " " + dto.getStatusEnum());
+                        " " + dto.getStatus());
 
         // Save messageEntity to repository
         messageRepository.save(messageEntity);

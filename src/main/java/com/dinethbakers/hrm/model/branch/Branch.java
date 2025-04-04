@@ -1,4 +1,4 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.branch;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;

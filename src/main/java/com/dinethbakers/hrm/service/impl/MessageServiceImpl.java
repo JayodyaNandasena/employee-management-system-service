@@ -1,7 +1,7 @@
 package com.dinethbakers.hrm.service.impl;
 
 import com.dinethbakers.hrm.entity.MessageEntity;
-import com.dinethbakers.hrm.model.Message;
+import com.dinethbakers.hrm.model.messages.Message;
 import com.dinethbakers.hrm.repository.jparepository.MessageRepository;
 import com.dinethbakers.hrm.service.MessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,5 +1,6 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.account;
 
+import com.dinethbakers.hrm.model.employee.EmployeeRead;
 import lombok.Data;
 
 @Data

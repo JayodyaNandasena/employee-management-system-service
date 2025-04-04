@@ -1,5 +1,8 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.employee;
 
+import com.dinethbakers.hrm.model.jobRole.JobRole;
+import com.dinethbakers.hrm.model.account.AccountRead;
+import com.dinethbakers.hrm.model.branch.Branch;
 import com.dinethbakers.hrm.util.GenderEnum;
 import lombok.Data;
 
@@ -16,7 +19,7 @@ public class EmployeeRead {
     private LocalDate hiredDate;
     private String address;
     private String email;
-    private GenderEnum genderEnum;
+    private GenderEnum gender;
     private Branch branch;
     private JobRole jobRole;
     private AccountRead account;

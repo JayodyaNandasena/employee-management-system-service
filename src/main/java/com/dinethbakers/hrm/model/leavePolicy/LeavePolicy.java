@@ -1,4 +1,4 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.leavePolicy;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

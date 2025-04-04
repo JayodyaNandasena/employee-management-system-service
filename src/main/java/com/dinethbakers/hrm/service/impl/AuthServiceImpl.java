@@ -1,7 +1,7 @@
 package com.dinethbakers.hrm.service.impl;
 
 import com.dinethbakers.hrm.entity.UserEntity;
-import com.dinethbakers.hrm.model.LoginRequest;
+import com.dinethbakers.hrm.model.login.LoginRequest;
 import com.dinethbakers.hrm.repository.jparepository.UserRepository;
 import com.dinethbakers.hrm.service.AuthService;
 import com.fasterxml.jackson.databind.ObjectMapper;

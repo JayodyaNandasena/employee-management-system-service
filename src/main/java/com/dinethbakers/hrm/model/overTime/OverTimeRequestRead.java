@@ -1,5 +1,6 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.overTime;
 
+import com.dinethbakers.hrm.model.employee.EmployeeCreate;
 import com.dinethbakers.hrm.util.StatusEnum;
 import lombok.Data;
 

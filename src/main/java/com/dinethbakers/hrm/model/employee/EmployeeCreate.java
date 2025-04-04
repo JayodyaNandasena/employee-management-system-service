@@ -1,5 +1,6 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.employee;
 
+import com.dinethbakers.hrm.model.account.AccountCreate;
 import com.dinethbakers.hrm.util.GenderEnum;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;

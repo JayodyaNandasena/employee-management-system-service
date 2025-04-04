@@ -1,4 +1,4 @@
-package com.dinethbakers.hrm.model;
+package com.dinethbakers.hrm.model.overTime;
 
 import com.dinethbakers.hrm.util.StatusEnum;
 import jakarta.validation.constraints.NotBlank;

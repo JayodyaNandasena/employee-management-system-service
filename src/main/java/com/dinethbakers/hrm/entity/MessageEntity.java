@@ -39,7 +39,7 @@ public class MessageEntity implements Serializable {
 
     @ManyToMany
     @JoinTable(name = "employee_message",
-            joinColumns = @JoinColumn(name = "id"),
+            joinColumns = @JoinColumn(name = "message_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private List<EmployeeEntity> employees;
 

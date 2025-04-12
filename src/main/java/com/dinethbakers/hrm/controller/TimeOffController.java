@@ -18,7 +18,8 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 @RequestMapping("/timeOff")
-@PreAuthorize("hasAnyRole('DEPARTMENT_MANAGER', 'BRANCH_MANAGER', 'SUPER_ADMIN')")public class TimeOffController {
+@PreAuthorize("hasAnyRole('DEPARTMENT_MANAGER', 'BRANCH_MANAGER', 'SUPER_ADMIN')")
+public class TimeOffController {
     private final TimeOffService timeOffService;
 
     @GetMapping

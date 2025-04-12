@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -47,8 +48,13 @@ public class SalaryServiceImpl implements SalaryService {
         BigDecimal otPayment = BigDecimal.ZERO;
         BigDecimal otHours = BigDecimal.ZERO;
 
+        LocalDate now = LocalDate.now();
+        LocalDate startOfMonth = now.withDayOfMonth(1);
+        LocalDate endOfMonth = now.withDayOfMonth(now.lengthOfMonth());
+
         if (otPerHour.compareTo(BigDecimal.ZERO) != 0) {
-            otPayment = overTimeRepository.findTotalOvertimePaymentByEmployeeId(employeeId);
+            otPayment = overTimeRepository.findTotalOvertimePaymentByEmployeeIdThisMonth(
+                    employeeId, startOfMonth, endOfMonth);
             if (otPayment == null) {
                 otPayment = BigDecimal.ZERO;
             } else {

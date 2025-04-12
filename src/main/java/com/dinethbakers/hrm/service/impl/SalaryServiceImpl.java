@@ -49,7 +49,9 @@ public class SalaryServiceImpl implements SalaryService {
 
         if (otPerHour.compareTo(BigDecimal.ZERO) != 0) {
             otPayment = overTimeRepository.findTotalOvertimePaymentByEmployeeId(employeeId);
-            if (otPayment != null) {
+            if (otPayment == null) {
+                otPayment = BigDecimal.ZERO;
+            } else {
                 otHours = otPayment.divide(otPerHour, 2, RoundingMode.HALF_UP);
             }
         }

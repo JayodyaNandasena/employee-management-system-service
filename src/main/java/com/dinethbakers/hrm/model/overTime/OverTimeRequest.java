@@ -31,5 +31,5 @@ public class OverTimeRequest {
 
     private String text;
 
-    private StatusEnum statusEnum;
+    private StatusEnum status;
 }
